@@ -146,6 +146,7 @@ app.post('/signupSubmit', async (req, res) => {
         await userCollection.insertOne({username: username, email: email, password: hashedPassword});
         console.log("Inserted user");
 
+        req.session.authenticated = true;
         req.session.username = username;
 
         res.redirect("/members");
